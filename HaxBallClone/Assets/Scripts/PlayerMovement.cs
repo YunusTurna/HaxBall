@@ -32,8 +32,6 @@ public class PlayerController : NetworkBehaviour
     }
     void Movement()
     {
-        if (!IsOwner)  return; 
-
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
 
@@ -44,7 +42,6 @@ public class PlayerController : NetworkBehaviour
     }
     void Shoot()
     {
-        if (!IsOwner)  return; 
         if (Input.GetKeyDown(KeyCode.X) && canShoot)
         {
             ball.GetComponent<Rigidbody2D>().AddForce((ball.transform.position - this.gameObject.transform.position) * shootPower , ForceMode2D.Impulse);
@@ -53,7 +50,6 @@ public class PlayerController : NetworkBehaviour
     }
     void ReadyForShoot()
     {
-        if (!IsOwner)  return; 
         if (Input.GetKey(KeyCode.X))
         {
             this.gameObject.transform.GetChild(0).gameObject.SetActive(true);
@@ -65,7 +61,6 @@ public class PlayerController : NetworkBehaviour
     }
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (!IsOwner)  return; 
         if (other.gameObject.tag == "Ball")
         {
             canShoot = true;
@@ -73,7 +68,6 @@ public class PlayerController : NetworkBehaviour
     }
     private void OnCollisionExit2D(Collision2D other)
     {
-        if (!IsOwner)  return; 
         if (other.gameObject.tag == "Ball")
         {
             canShoot = false;
