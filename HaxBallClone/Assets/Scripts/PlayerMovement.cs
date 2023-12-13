@@ -1,7 +1,6 @@
-using Unity.Netcode;
 using UnityEngine;
 
-public class PlayerController : NetworkBehaviour
+public class PlayerController : MonoBehaviour
 {
     [Header("Player Movement")]
     public float speed = 5f;
@@ -24,7 +23,6 @@ public class PlayerController : NetworkBehaviour
 
     private void Update()
     {
-      if (!IsOwner)  return; 
         Movement();
         ReadyForShoot();
         Shoot();
